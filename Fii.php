@@ -181,7 +181,19 @@ class WebAppExtend
 
 	public function includeExtendClass($extendArr){
 		foreach ($extendArr as $key => $value) {
-			
+			if (is_string($value)) {
+				$pathArr = explode('.', $value);
+				if ($pathArr[0] === 'application') {
+					
+				}
+				$path = str_replace('.', DIR_SIGN , subject);
+
+				if (end($pathArr) === '*') {
+					
+				}else{
+
+				}
+			}
 		}
 	}
 }
