@@ -12,29 +12,19 @@ ini_set('date.timezone','Asia/Shanghai');
 
 defined('ENV_DEBUG') or define('ENV_DEBUG',true);
 
-
 define('PATH_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
+
+
+$fii = PATH_ROOT . 'Fii.php';
 
 $config = PATH_ROOT . 'protected/config/main.php';
 
 
-require_once( 'Data.php' );
+require_once( $fii );
 
+Fii::app()->ApplicationInit($config);
 
-Fii:app()->ApplicationInit($config);
-
-
-echo $_SERVER['HTTP_HOST']."<br>";
-
-echo 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."<br>";
-
-echo 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
-
-$test = parse_url('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);  
-
-echo "<pre>";
-
-print_r($test); 
+//http://www.fly.cc/index.php?path=index/index&name=fly&password=wr342
 
 exit;
 

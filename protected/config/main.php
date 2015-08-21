@@ -7,6 +7,12 @@ return array(
 	//Static File Sever domin
 	'staticFileSever' => 'www.fly.cc' ,
 
+	// autoloading model and component classes
+	'import'=>array(
+		'application.models.*',
+		'application.components.*',
+	),
+
 	'db' => array(
 			'mysql'=>array(
 			    'host' => 'localhost',
