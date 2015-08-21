@@ -126,7 +126,7 @@ class Data
 
 		return $staticUri;
 	}
-	
+
 }
 
 Data::$data['static_path'] = array( 
@@ -135,9 +135,6 @@ Data::$data['static_path'] = array(
 	'css' => REQUEST_PATH_STATIC_CSS ,
 	'images' => REQUEST_PATH_STATIC_IMG ,
 );
-
-Data::$data['config'] = require(dirname(__FILE__).'/protected/config/main.php');
-
 
 /**
 * Fii App Class Main
@@ -155,5 +152,9 @@ class Fii extends Data
 	public function staticUri($value='')
 	{
 		return Data::$data['static_path'];
+	}
+
+	public function ApplicationInit($path){
+		Data::$data['config'] = require_once($path);
 	}
 }
