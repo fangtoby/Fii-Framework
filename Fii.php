@@ -243,32 +243,32 @@ class WebApplication
 
 	public function route($value='')
 	{
-		$classExtendStr = 'Controller';
-		$actionPrefixStr = 'action';
-		$routeParamNameStr = 'path';
+		$clsExt = 'Controller';
+		$actExt = 'action';
+		$rouNam = 'path';
 		if ($_SERVER['REQUEST_URI'] != '') {
-			$request_param = $this->parse_query($_SERVER['REQUEST_URI']);
+			$rparam = $this->parse_query($_SERVER['REQUEST_URI']);
 		}else{
 			throw new Exception("Error Processing Request", 1);
 		}
-		
-		print_r($request_param); 
-
-		if (isset( $request_param[ $routeParamNameStr ])) {
-			$route = explode('/', strtolower( $request_param[ $routeParamNameStr ] ));
-			if (is_array($route)) {
-				switch (count($route)) {
+		if (ENV_DEBUG) {
+			print_r($rparam); 
+		}
+		if (isset( $rparam[ $rouNam ])) {
+			$r = explode('/', strtolower( $rparam[ $rouNam ] ));
+			if (is_array($r)) {
+				switch (count($r)) {
 					case 0:
 						$this->reflectionAPI();
 						break;
 					case 1:
-						$this->reflectionAPI( ucfirst($route[0]).$classExtendStr);
+						$this->reflectionAPI( ucfirst($r[0]).$clsExt);
 						break;
 					case 2:
-						$this->reflectionAPI( ucfirst($route[0]).$classExtendStr , $actionPrefixStr.ucfirst($route[1]));
+						$this->reflectionAPI( ucfirst($r[0]).$clsExt , $actExt.ucfirst($r[1]));
 						break;
 					case 3:
-						$this->reflectionAPI( ucfirst($route[0]).$classExtendStr , $actionPrefixStr.ucfirst($route[1]) , ucfirst($route[2]));
+						$this->reflectionAPI( ucfirst($r[0]).$clsExt , $actExt.ucfirst($r[1]) , ucfirst($r[2]));
 						break;
 					//...
 				}
