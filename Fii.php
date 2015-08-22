@@ -4,8 +4,6 @@
 
 define('STATIC_FILE_TRUE_SERVER', "www.fly.cc");
 
-define('DIR_SIGN', DIRECTORY_SEPARATOR);
-
 
 if (STATIC_FILE_TRUE_SERVER != $_SERVER['HTTP_HOST']) {
 
@@ -163,7 +161,7 @@ class Fii extends Data
 			'images' => REQUEST_PATH_STATIC_IMG ,
 		);
 		//print_r( Data::$data);
-		//WebAppExtend::init()->includeExtendClass(Data::$data['config']['import']);
+		WebAppExtend::init()->includeExtendClass(Data::$data['config']['import']);
 		WebApplication::init()->route();
 	}
 
@@ -182,16 +180,26 @@ class WebAppExtend
 	public function includeExtendClass($extendArr){
 		foreach ($extendArr as $key => $value) {
 			if (is_string($value)) {
-				$pathArr = explode('.', $value);
-				if ($pathArr[0] === 'application') {
-					
-				}
-				$path = str_replace('.', DIR_SIGN , subject);
+				$path = str_replace('.', DIR_SIGN , $value);
+				$pathStrLength = strlen($path);
+				$path = substr($path,0, $pathStrLength - 1);
+				$path = str_replace('application', 'protected', $path);
+				$path = PATH_ROOT . $path;
+				
+				if (is_dir($path)) {
+					$files=scandir($path);
+					if (count($files)) {
+						foreach ($files as $key => $value) {
+							if ($value != '.' && $value != '..') {
+								$file = $path . $value;
 
-				if (end($pathArr) === '*') {
-					
-				}else{
-
+								if (file_exists($file)) {
+									require_once($file);	
+								}
+							}
+							
+						}
+					}
 				}
 			}
 		}
@@ -215,11 +223,15 @@ class WebApplication
 		$classExtendStr = 'Controller';
 		$actionPrefixStr = 'action';
 		$routeParamNameStr = 'path';
-
-		$request_param = $this->parse_query($_SERVER['REQUEST_URI']);
+		if ($_SERVER['REQUEST_URI'] != '') {
+			$request_param = $this->parse_query($_SERVER['REQUEST_URI']);
+		}else{
+			throw new Exception("Error Processing Request", 1);
+		}
+		
 		print_r($request_param); 
 
-		if ($request_param[ $routeParamNameStr ]) {
+		if (isset( $request_param[ $routeParamNameStr ])) {
 			$route = explode('/', strtolower( $request_param[ $routeParamNameStr ] ));
 			if (is_array($route)) {
 				switch (count($route)) {

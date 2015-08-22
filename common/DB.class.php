@@ -1,4 +1,5 @@
 <?php
+<?php
 class DB
 {
     private $linkType = 0;
