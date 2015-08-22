@@ -27,12 +27,6 @@ Fii::app()->ApplicationInit($config);
 
 //http://www.fly.cc/index.php?path=index/index&name=fly&password=wr342
 
-exit;
-
-header('Content-Type: text/html; charset=UTF-8');
-
-include "./view/index.php";
-
 // 0. 开始
 // 1. 错误等级
 // 2. 时区设置

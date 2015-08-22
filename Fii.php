@@ -2,7 +2,7 @@
 
 //静态文件服务器
 
-define('STATIC_FILE_TRUE_SERVER', "www.fly.cc");
+define('STATIC_FILE_TRUE_SERVER', "www.fly.com");
 
 
 if (STATIC_FILE_TRUE_SERVER != $_SERVER['HTTP_HOST']) {
@@ -69,7 +69,6 @@ class Data
 	*
 	*	@todo: 
 	*		1.添加版本控制，缓存处理，
-	*		2.添加自定义属性
 	*/
 
 	public function elementDomCreate($type, $name , $attribute = NULL , $cash = false)
@@ -97,6 +96,10 @@ class Data
 			'css' => '<link type="text/css" rel="stylesheet" href="__TAG__" __ATTRIBUTE__ >', 
 		);
 
+		if (!$cash) {
+			$cashNext = $this->getCacheString($type);
+			$name = $name . '?v=' . $cashNext;
+		}
 
 		switch ($type) {
 			case $typeArr[0]:
@@ -126,6 +129,18 @@ class Data
 		$staticUri = str_replace($attrSign, $attributeStr, $staticUri);
 
 		return $staticUri;
+	}
+
+	public function getCacheString($type)
+	{
+		if (Data::$data['files_cache_sys']) {
+			return Data::$data['files_cache_sys'];
+		}
+		$staticPath = PATH_ROOT . 'version' . DIRECTORY_SEPARATOR . 'static.ini';
+		if(file_exists($staticPath)){
+			Data::$data['files_cache_sys'] = parse_ini_file($staticPath)[$type];
+			return  Data::$data['files_cache_sys'];
+		}
 	}
 
 }
