@@ -178,31 +178,54 @@ class WebAppExtend
 	}
 
 	public function includeExtendClass($extendArr){
+
 		foreach ($extendArr as $key => $value) {
 			if (is_string($value)) {
-				$path = str_replace('.', DIR_SIGN , $value);
-				$pathStrLength = strlen($path);
-				$path = substr($path,0, $pathStrLength - 1);
-				$path = str_replace('application', 'protected', $path);
-				$path = PATH_ROOT . $path;
-				
-				if (is_dir($path)) {
-					$files=scandir($path);
-					if (count($files)) {
-						foreach ($files as $key => $value) {
-							if ($value != '.' && $value != '..') {
-								$file = $path . $value;
 
-								if (file_exists($file)) {
-									require_once($file);	
-								}
-							}
-							
-						}
-					}
+				$path = $this->changeExtendDirSign('.', $value, 'application', 'protected');
+
+				$files = $this->getFileListFromPath($path);
+
+				foreach ($files as $key => $value) {
+					require_once($value);
 				}
 			}
 		}
+	}
+
+	public function changeExtendDirSign($sign, $str, $parentDirName, $nowDirName)
+	{
+		$path = str_replace($sign, DIRECTORY_SEPARATOR , $str);
+		$pathStrLength = strlen($path);
+
+		if ($path[ $pathStrLength - 1 ] === '*') {
+			$path = substr($path,0, $pathStrLength - 1);
+		}
+
+		$path = str_replace($parentDirName, $nowDirName, $path);
+		$path = PATH_ROOT . $path;
+		return $path;
+	}
+
+	public function getFileListFromPath($path)
+	{
+		$filelist = array();
+
+		if (is_dir($path)) {
+			$files=scandir($path);
+			if (count($files)) {
+				foreach ($files as $key => $value) {
+					if ($value != '.' && $value != '..') {
+						$file = $path . $value;
+						if (file_exists($file) && pathinfo($file, PATHINFO_EXTENSION) === 'php') {
+							$filelist[] = $file;
+						}
+					}
+					
+				}
+			}
+		}
+		return $filelist;
 	}
 }
 
