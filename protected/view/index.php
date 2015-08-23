@@ -10,7 +10,9 @@
 	</script>
 </head>
 <body>
-	<div id="page_loading"><?=Fii::app()->elementDomCreate('images','loadinfo.gif',array('class'=>'load_img'))?></div>
+	<div id="page_loading">
+		<?=Fii::app()->elementDomCreate('images','loadinfo.gif',array('class'=>'load_img'))?>
+	</div>
 	<div class="main">
 		<h1>Fii App</h1>
 		<h4>Hi. I am Fii</h4>

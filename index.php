@@ -25,14 +25,13 @@ ini_set('date.timezone','Asia/Shanghai');
 
 defined('ENV_DEBUG') or define('ENV_DEBUG',true);
 
-define('DIR_SIGN', DIRECTORY_SEPARATOR);
 
-define('PATH_ROOT', dirname(__FILE__) . DIR_SIGN);
+define('PATH_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 
 
 $fii = PATH_ROOT . 'Fii.php';
 
-$config = PATH_ROOT . 'protected'.DIR_SIGN.'config'.DIR_SIGN.'main.php';
+$config = PATH_ROOT . 'protected'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'main.php';
 
 require_once( $fii );
 

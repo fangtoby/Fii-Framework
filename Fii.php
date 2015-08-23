@@ -317,11 +317,13 @@ class WebApplication
 
 	public function reflectionAPI($controllerStr = 'IndexController', $actionStr = 'actionIndex' , $modulesStr = '')
 	{
+		$DIR = DIRECTORY_SEPARATOR;
+		
 		if ($modulesStr != '') {
-			$controllerPath = PATH_ROOT.'protected'.DIR_SIGN.'modules'.DIR_SIGN;
-			$controllerPath .= $modulesStr.DIR_SIGN.'controller'.DIR_SIGN;
+			$controllerPath = PATH_ROOT.'protected'.$DIR.'modules'.$DIR;
+			$controllerPath .= $modulesStr.$DIR.'controller'.$DIR;
 		}else{
-			$controllerPath = PATH_ROOT.'protected'.DIR_SIGN.'controller'. DIR_SIGN;
+			$controllerPath = PATH_ROOT.'protected'.$DIR.'controller'. $DIR;
 		}
 
 		$classPath = $controllerPath . $controllerStr .'.php';
