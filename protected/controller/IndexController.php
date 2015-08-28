@@ -9,18 +9,18 @@ class IndexController extends Controller
 	private function actionInit(){
 		echo 2;
 	}
+
 	public function actionIndex()
 	{
-		$lineDateStr = '2015-09-01 00:00:00';
-		$timeline = strtotime($lineDateStr);
-		$timenow = time();
+		
+		// echo "This is " . __CLASS__ . " class.\n";
+		// echo "This is " . __METHOD__ . " method.\n";
+		// echo "This is function '" . __FUNCTION__ . "' inside class.\n";
 
-		if ($timenow > $timeline ) {
-			echo 1;
-		}else{
-			echo 2;
-		}
+		// echo "This is " . __FILE__  . " __FILE__ .\n";
+		// echo "This is " . __DIR__  . " __DIR__ .\n";
+
+
 		$this->josn_success();
-		echo "IndexController index action";
 	}
 }

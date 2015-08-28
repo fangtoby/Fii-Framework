@@ -58,7 +58,7 @@ class View
 class CController 
 {
 	function __construct() {
-		$this->beforeRender();
+		$this->beforeAction();
 	}
 
 	public function josn_success($value='')
@@ -71,8 +71,11 @@ class CController
 	}
 
 	public function render($view,$data = array()){
+
+    $this->beforeRender();
 		header('Content-Type: text/html; charset=UTF-8');
 		extract($data);
+    
 		include "./view/index.php";
 		$this->afterRender();
 	}
@@ -81,6 +84,17 @@ class CController
 	{
 		echo "parent afterrender";
 	}
+
+  public function beforeAction()
+  {
+    # code...
+  }
+
+  public function afterAction()
+  {
+    # code...
+  }
+
 }
 /**
 * 
