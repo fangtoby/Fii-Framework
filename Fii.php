@@ -318,7 +318,7 @@ class WebApplication
 	public function reflectionAPI($controllerStr = 'IndexController', $actionStr = 'actionIndex' , $modulesStr = '')
 	{
 		$DIR = DIRECTORY_SEPARATOR;
-		
+
 		if ($modulesStr != '') {
 			$controllerPath = PATH_ROOT.'protected'.$DIR.'modules'.$DIR;
 			$controllerPath .= $modulesStr.$DIR.'controller'.$DIR;

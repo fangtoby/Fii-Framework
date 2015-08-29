@@ -1,0 +1,57 @@
+CREATE TABLE `customer` (
+  `Name` varchar(300) NOT NULL,
+  `CardNo` varchar(300) DEFAULT NULL,
+  `Descriot` varchar(300) DEFAULT NULL,
+  `CtfTp` varchar(300) DEFAULT NULL,
+  `CtfId` varchar(300) DEFAULT NULL,
+  `Gender` varchar(300) DEFAULT NULL,
+  `Birthday` varchar(300) DEFAULT NULL,
+  `Address` varchar(300) DEFAULT NULL,
+  `Zip` varchar(300) DEFAULT NULL,
+  `Dirty` varchar(300) DEFAULT NULL,
+  `District1` varchar(300) DEFAULT NULL,
+  `District2` varchar(300) DEFAULT NULL,
+  `District3` varchar(300) DEFAULT NULL,
+  `District4` varchar(300) DEFAULT NULL,
+  `District5` varchar(300) DEFAULT NULL,
+  `District6` varchar(300) DEFAULT NULL,
+  `FirstNm` varchar(300) DEFAULT NULL,
+  `LastNm` varchar(300) DEFAULT NULL,
+  `Duty` varchar(300) DEFAULT NULL,
+  `Mobile` varchar(300) DEFAULT NULL,
+  `Tel` varchar(300) DEFAULT NULL,
+  `Fax` varchar(300) DEFAULT NULL,
+  `EMail` varchar(300) DEFAULT NULL,
+  `Nation` varchar(300) DEFAULT NULL,
+  `Taste` varchar(300) DEFAULT NULL,
+  `Education` varchar(300) DEFAULT NULL,
+  `Company` varchar(300) DEFAULT NULL,
+  `CTel` varchar(300) DEFAULT NULL,
+  `CAddress` varchar(300) DEFAULT NULL,
+  `CZip` varchar(300) DEFAULT NULL,
+  `Family` varchar(300) DEFAULT NULL,
+  `Version` varchar(300) DEFAULT NULL,
+  `id` varchar(300) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+load data infile  '/Users/toby/Desktop/2000W/1-200W.csv'   INTO TABLE customer       CHARACTER SET utf8       FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
+load data infile  '/Users/toby/Desktop/2000W/200W-400W.csv'   INTO TABLE customer       CHARACTER SET utf8       FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
+load data infile  '/Users/toby/Desktop/2000W/400W-600W.csv'   INTO TABLE customer       CHARACTER SET utf8       FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
+load data infile  '/Users/toby/Desktop/2000W/600W-800W.csv'   INTO TABLE customer       CHARACTER SET utf8       FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
+load data infile  '/Users/toby/Desktop/2000W/800W-1000W.csv'   INTO TABLE customer       CHARACTER SET utf8       FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
+load data infile  '/Users/toby/Desktop/2000W/1000W-1200W.csv'   INTO TABLE customer       CHARACTER SET utf8       FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
+load data infile  '/Users/toby/Desktop/2000W/1200W-1400W.csv'   INTO TABLE customer       CHARACTER SET utf8       FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
+load data infile  '/Users/toby/Desktop/2000W/1400W-1600W.csv'   INTO TABLE customer       CHARACTER SET utf8       FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
+load data infile  '/Users/toby/Desktop/2000W/1600W-1800W.csv'   INTO TABLE customer       CHARACTER SET utf8       FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
+load data infile  '/Users/toby/Desktop/2000W/1800W-2000W.csv'   INTO TABLE customer       CHARACTER SET utf8       FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
+load data infile  '/Users/toby/Desktop/2000W/5000.csv'   INTO TABLE customer       CHARACTER SET utf8       FIELDS TERMINATED BY ',' ENCLOSED BY '"';
