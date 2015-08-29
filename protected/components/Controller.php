@@ -55,22 +55,64 @@ class View
 /**
 * 
 */
-class Controller
+class CController 
 {
+	function __construct() {
+		$this->beforeAction();
+	}
+
 	public function josn_success($value='')
 	{
 		echo json_encode(array('code' => 1, ));
-		//exit;
 	}
 	
 	public function beforeRender(){
-
+		//echo "prent beforeRender";
 	}
 
 	public function render($view,$data = array()){
 
+    $this->beforeRender();
 		header('Content-Type: text/html; charset=UTF-8');
 		extract($data);
+    
 		include "./view/index.php";
+		$this->afterRender();
+	}
+
+	public function afterRender()
+	{
+		echo "parent afterrender";
+	}
+
+  public function beforeAction()
+  {
+    # code...
+  }
+
+  public function afterAction()
+  {
+    # code...
+  }
+
+}
+/**
+* 
+*/
+class Controller extends CController
+{
+	
+	public function josn_success($value='')
+	{
+		echo json_encode(array('code' => 1, ));
+	}
+	
+	public function beforeRender(){
+		//=echo "prent beforeRender";
+	}
+
+	public function afterRender()
+	{
+		echo "parent afterrender";
 	}
 }
